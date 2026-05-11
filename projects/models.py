@@ -9,31 +9,22 @@ class Category(models.Model):
         return self.name
 
 
+class ProjectStatus(models.IntegerChoices):
+    PENDING = 1, 'Pending'
+    COMPLETED = 2, 'Completed'
+    POSTPONED = 3, 'Postponed'
+    CANCELED = 4, 'Canceled'
+
+
 class Project(models.Model):
-
-    PENDING = 1
-    COMPLETED = 2
-    POSTPONED = 3
-    CANCELED = 4
-
-    STATUS_CHOICES = [
-        (PENDING, 'Pending'),
-        (COMPLETED, 'Completed'),
-        (POSTPONED, 'Postponed'),
-        (CANCELED, 'Canceled'),
-    ]
-
     title = models.CharField(max_length=255)
     description = models.TextField()
-
     status = models.IntegerField(
-        choices=STATUS_CHOICES,
-        default=PENDING
+        choices=ProjectStatus.choices,
+        default=ProjectStatus.PENDING,
     )
-
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
     category = models.ForeignKey(
         Category,
         on_delete=models.PROTECT
