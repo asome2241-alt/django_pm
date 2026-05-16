@@ -110,7 +110,8 @@
                             aria-expanded="false"
                         >
 
-                            {{ user.username }}
+
+                        {{ user.username }}
 
                         </a>
 
@@ -123,7 +124,7 @@
 
                                 <a
                                     class="dropdown-item"
-                                    href="#"
+                                    href="{% url 'profile' %}"
                                 >
 
                                     {% trans 'Profile' %}
@@ -174,6 +175,14 @@
                 >
 
                     {% trans 'Login' %}
+
+                </a>
+                <a
+                    href="{% url 'register' %}"
+                    class="btn btn-light ms-2"
+>
+
+                    Register
 
                 </a>
 

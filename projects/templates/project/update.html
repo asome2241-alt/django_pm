@@ -81,13 +81,17 @@
                             {% trans 'Save' %}
 
                         </button>
-                        <button class="btn btn-danger">
+
+                        <a
+                            href="{% url 'project_delete' object.id %}"
+                            class="btn btn-danger w-100"
+                        >
 
                             <i class="bi bi-trash"></i>
 
                             {% trans 'Delete' %}
 
-                        </button>
+                        </a>
 
                     </div>
 

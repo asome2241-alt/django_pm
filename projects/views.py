@@ -1,23 +1,28 @@
-from django.views.generic import ListView,CreateView,UpdateView,DeleteView
-from django.urls import reverse_lazy,reverse
-from . import models
-from . import forms
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy, reverse
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
-class ProjectListView(ListView):
+from . import models
+from . import forms
+
+
+class ProjectListView(LoginRequiredMixin, ListView):
 
     model = models.Project
 
     template_name = 'project/list.html'
+
     paginate_by = 3
 
     def get_queryset(self):
 
-        query = self.request.GET.get('q',None)
+        query = self.request.GET.get('q', None)
 
-        projects = models.Project.objects.all()
+        projects = models.Project.objects.filter(
+            user=self.request.user
+        )
 
         if query:
 
@@ -26,7 +31,8 @@ class ProjectListView(ListView):
             )
 
         return projects
-    
+
+
 class ProjectCreateView(LoginRequiredMixin, CreateView):
 
     model = models.Project
@@ -43,7 +49,8 @@ class ProjectCreateView(LoginRequiredMixin, CreateView):
 
         return super().form_valid(form)
 
-class ProjectUpdateView(LoginRequiredMixin,UpdateView):
+
+class ProjectUpdateView(LoginRequiredMixin, UpdateView):
 
     model = models.Project
 
@@ -53,14 +60,21 @@ class ProjectUpdateView(LoginRequiredMixin,UpdateView):
 
     context_object_name = 'project'
 
+    def get_queryset(self):
+
+        return models.Project.objects.filter(
+            user=self.request.user
+        )
+
     def get_success_url(self):
 
         return reverse(
             'project_update',
             args=[self.object.id]
         )
-    
-class ProjectDeleteView(LoginRequiredMixin,DeleteView):
+
+
+class ProjectDeleteView(LoginRequiredMixin, DeleteView):
 
     model = models.Project
 
@@ -68,7 +82,14 @@ class ProjectDeleteView(LoginRequiredMixin,DeleteView):
 
     success_url = reverse_lazy('project_list')
 
-class TaskCreateView(LoginRequiredMixin,CreateView):
+    def get_queryset(self):
+
+        return models.Project.objects.filter(
+            user=self.request.user
+        )
+
+
+class TaskCreateView(LoginRequiredMixin, CreateView):
 
     model = models.Task
 
@@ -80,8 +101,9 @@ class TaskCreateView(LoginRequiredMixin,CreateView):
 
         project = get_object_or_404(
             models.Project,
-            id=self.kwargs['pk']
-)
+            id=self.kwargs['pk'],
+            user=self.request.user
+        )
 
         form.instance.project = project
 
@@ -95,12 +117,17 @@ class TaskCreateView(LoginRequiredMixin,CreateView):
         )
 
 
-
-class TaskDeleteView(LoginRequiredMixin,DeleteView):
+class TaskDeleteView(LoginRequiredMixin, DeleteView):
 
     model = models.Task
 
     template_name = 'project/delete.html'
+
+    def get_queryset(self):
+
+        return models.Task.objects.filter(
+            project__user=self.request.user
+        )
 
     def get_success_url(self):
 
@@ -108,12 +135,15 @@ class TaskDeleteView(LoginRequiredMixin,DeleteView):
             'project_update',
             args=[self.object.project.id]
         )
+
+
 @login_required
 def task_toggle(request, pk):
 
     task = get_object_or_404(
         models.Task,
-        id=pk
+        id=pk,
+        project__user=request.user
     )
 
     task.is_completed = not task.is_completed
