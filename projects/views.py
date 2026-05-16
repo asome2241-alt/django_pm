@@ -3,14 +3,31 @@ from django.urls import reverse_lazy,reverse
 from . import models
 from . import forms
 from django.shortcuts import redirect, get_object_or_404
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 class ProjectListView(ListView):
+
     model = models.Project
 
     template_name = 'project/list.html'
+    paginate_by = 3
 
+    def get_queryset(self):
 
-class ProjectCreateView(CreateView):
+        query = self.request.GET.get('q',None)
+
+        projects = models.Project.objects.all()
+
+        if query:
+
+            projects = projects.filter(
+                title__icontains=query
+            )
+
+        return projects
+    
+class ProjectCreateView(LoginRequiredMixin, CreateView):
 
     model = models.Project
 
@@ -26,7 +43,7 @@ class ProjectCreateView(CreateView):
 
         return super().form_valid(form)
 
-class ProjectUpdateView(UpdateView):
+class ProjectUpdateView(LoginRequiredMixin,UpdateView):
 
     model = models.Project
 
@@ -43,7 +60,7 @@ class ProjectUpdateView(UpdateView):
             args=[self.object.id]
         )
     
-class ProjectDeleteView(DeleteView):
+class ProjectDeleteView(LoginRequiredMixin,DeleteView):
 
     model = models.Project
 
@@ -51,7 +68,7 @@ class ProjectDeleteView(DeleteView):
 
     success_url = reverse_lazy('project_list')
 
-class TaskCreateView(CreateView):
+class TaskCreateView(LoginRequiredMixin,CreateView):
 
     model = models.Task
 
@@ -79,7 +96,7 @@ class TaskCreateView(CreateView):
 
 
 
-class TaskDeleteView(DeleteView):
+class TaskDeleteView(LoginRequiredMixin,DeleteView):
 
     model = models.Task
 
@@ -91,6 +108,7 @@ class TaskDeleteView(DeleteView):
             'project_update',
             args=[self.object.project.id]
         )
+@login_required
 def task_toggle(request, pk):
 
     task = get_object_or_404(

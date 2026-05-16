@@ -61,4 +61,36 @@
 
     </div>
 
+    <form
+        method="GET"
+        action="{% url 'project_list' %}"
+        class="d-flex"
+    >
+
+        <div class="input-group">
+
+            <input
+                type="text"
+                name="q"
+                class="form-control"
+                placeholder="{% trans 'Search' %}"
+                value="{{ request.GET.q }}"
+            >
+
+            <button
+                class="btn btn-outline-light"
+                type="submit"
+            
+            >
+
+                <i class="bi bi-search"></i>    
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
 </nav>
