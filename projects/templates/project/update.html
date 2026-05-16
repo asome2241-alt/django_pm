@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{{ project.title }}</h1>
+
+<form method="post">
+
+    {% csrf_token %}
+
+    {{ form }}
+
+    <input type="submit" value="Update">
+
+</form>
+
+<hr>
+
+<h3>Tasks</h3>
+
+<ul>
+
+    {% for task in project.task_set.all %}
+
+        <li>
+
+            <form
+                method="post"
+                action="{% url 'task_toggle' task.id %}"
+                style="display:inline;"
+            >
+
+                {% csrf_token %}
+
+                <input
+                    type="checkbox"
+                    onChange="this.form.submit()"
+                    {% if task.is_completed %}checked{% endif %}
+                >
+
+            </form>
+
+            {{ task.description }}
+
+            <a href="{% url 'task_delete' task.id %}">
+                Delete
+            </a>
+
+        </li>
+
+    {% empty %}
+
+        <li>No tasks</li>
+
+    {% endfor %}
+
+</ul>
+
+<a href="{% url 'task_create' project.id %}">
+    Add Task
+</a>
+
+{% endblock %}
