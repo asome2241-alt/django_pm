@@ -1,63 +1,110 @@
 {% extends 'base.html' %}
 
+{% load i18n %}
+{% load humanize %}
+
 {% block content %}
 
-<h1>{{ project.title }}</h1>
+<nav aria-label="breadcrumb" class="mb-4">
 
-<form method="post">
+    <ol class="breadcrumb">
 
-    {% csrf_token %}
+        <li class="breadcrumb-item">
 
-    {{ form }}
+            <a href="{% url 'project_list' %}">
 
-    <input type="submit" value="Update">
+                Projects
 
-</form>
-
-<hr>
-
-<h3>Tasks</h3>
-
-<ul>
-
-    {% for task in project.task_set.all %}
-
-        <li>
-
-            <form
-                method="post"
-                action="{% url 'task_toggle' task.id %}"
-                style="display:inline;"
-            >
-
-                {% csrf_token %}
-
-                <input
-                    type="checkbox"
-                    onChange="this.form.submit()"
-                    {% if task.is_completed %}checked{% endif %}
-                >
-
-            </form>
-
-            {{ task.description }}
-
-            <a href="{% url 'task_delete' task.id %}">
-                Delete
             </a>
 
         </li>
 
-    {% empty %}
+        <li
+            class="breadcrumb-item active"
+            aria-current="page"
+        >
 
-        <li>No tasks</li>
+            {{ object.title }}
 
-    {% endfor %}
+        </li>
 
-</ul>
+    </ol>
 
-<a href="{% url 'task_create' project.id %}">
-    Add Task
-</a>
+</nav>
+
+<div class="row">
+
+    <div class="col-md-4">
+
+        <div class="card shadow-sm border-0">
+
+            <form method="post">
+
+                {% csrf_token %}
+
+                <div class="card-body">
+
+                    <h5 class="mb-4">
+
+                        Project Details
+
+                    </h5>
+
+                    {% include 'common/form.html' with form=form %}
+
+                    <div class="d-flex mt-4">
+
+                        <span class="me-auto text-muted small">
+
+                            <i class="bi bi-clock"></i>
+
+                            <time datetime="{{ object.created_at }}">
+
+                                {{ object.created_at|naturaltime }}
+
+                            </time>
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="card-footer bg-white border-0">
+
+                    <div class="d-grid gap-2">
+
+                        <button class="btn btn-success">
+
+                            <i class="bi bi-save"></i>
+
+                            {% trans 'Save' %}
+
+                        </button>
+                        <button class="btn btn-danger">
+
+                            <i class="bi bi-trash"></i>
+
+                            {% trans 'Delete' %}
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-8">
+
+        {% include 'project/task.html' with project=object %}
+
+    </div>
+
+</div>
 
 {% endblock %}

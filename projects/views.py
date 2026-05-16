@@ -30,9 +30,10 @@ class ProjectUpdateView(UpdateView):
 
     model = models.Project
 
-    form_class = forms.ProjectCreateForm
+    form_class = forms.ProjectUpdateForm
 
     template_name = 'project/update.html'
+
     context_object_name = 'project'
 
     def get_success_url(self):
@@ -60,9 +61,10 @@ class TaskCreateView(CreateView):
 
     def form_valid(self, form):
 
-        project = models.Project.objects.get(
+        project = get_object_or_404(
+            models.Project,
             id=self.kwargs['pk']
-        )
+)
 
         form.instance.project = project
 
