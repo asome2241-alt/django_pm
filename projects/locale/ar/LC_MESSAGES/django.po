@@ -3,12 +3,11 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-05-17 12:36+0300\n"
+"POT-Creation-Date: 2026-05-17 11:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,159 +18,211 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
-#: templates/partials/header.html:13
-msgid "Projects Management"
+#: project_management/settings.py:129
+msgid "Arabic"
+msgstr ""
+
+#: project_management/urls.py:21
+#, fuzzy
+#| msgid "Projects Management"
+msgid "Project Management Admin"
 msgstr "إدارة المشاريع"
 
-#: templates/partials/header.html:47
-msgid "Home"
-msgstr "الرئيسية"
+#: project_management/urls.py:22
+#, fuzzy
+#| msgid "Projects Management"
+msgid "Project Management Admin Portal"
+msgstr "إدارة المشاريع"
 
-#: templates/partials/header.html:60
-msgid "Create Project"
-msgstr "إنشاء مشروع"
+#: project_management/urls.py:23
+msgid "Welcome to the Project Management Admin Portal"
+msgstr ""
 
-#: templates/partials/header.html:84
-msgid "Search"
-msgstr "بحث"
-
-#: templates/partials/header.html:131
-msgid "Profile"
-msgstr "الملف الشخصي"
-
-#: templates/partials/header.html:157
-msgid "Logout"
-msgstr "تسجيل الخروج"
-
-#: templates/partials/header.html:178
-msgid "Login"
-msgstr "تسجيل الدخول"
-
-#: templates/project/create.html:19
-msgid "New Project"
-msgstr "مشروع جديد"
-
-#: templates/project/create.html:42
-msgid "Create"
-msgstr "إنشاء"
-
-#: templates/project/delete.html:25
-msgid "Delete Project"
-msgstr "حذف المشروع"
-
-#: templates/project/delete.html:31
-msgid "Are you sure you want to delete"
-msgstr "هل أنت متأكد من الحذف"
-
-#: templates/project/delete.html:59
-#: templates/project/update.html:92
-msgid "Delete"
-msgstr "حذف"
-
-#: templates/project/list.html:11
-msgid "My Projects"
-msgstr "مشاريعي"
-
-#: templates/project/task.html:101
-msgid "New Task"
-msgstr "مهمة جديدة"
-
-#: templates/project/task.html:110
-msgid "Add"
-msgstr "إضافة"
-
-#: templates/project/update.html:16
-msgid "Projects"
-msgstr "المشاريع"
-
-#: templates/project/update.html:49
-msgid "Project Details"
-msgstr "تفاصيل المشروع"
-
-#: templates/project/update.html:81
-msgid "Save"
-msgstr "حفظ"
-
-
-
-#: templates/registration/register.html
-msgid "Register"
-msgstr "إنشاء حساب"
-
-#: templates/registration/profile.html
-msgid "Profile Settings"
-msgstr "إعدادات الملف الشخصي"
-
-#: templates/registration/profile.html
-msgid "Save Changes"
-msgstr "حفظ التغييرات"
-
-#: templates/registration/register.html
-msgid "Create Account"
-msgstr "إنشاء الحساب"
-
-msgid "First Name"
-msgstr "الاسم الأول"
-
-msgid "Last Name"
-msgstr "اسم العائلة"
-
-msgid "Username"
-msgstr "اسم المستخدم"
-
-msgid "Email"
-msgstr "البريد الإلكتروني"
-
-msgid "Password"
-msgstr "كلمة المرور"
-
-msgid "Confirm Password"
-msgstr "تأكيد كلمة المرور"
-
-msgid "Tasks"
-msgstr "المهام"
-
-msgid "No tasks yet"
-msgstr "لا توجد مهام بعد"
-
-msgid "Edit"
-msgstr "تعديل"
-
-msgid "There are no projects to show"
-msgstr "لا توجد مشاريع لعرضها"
-
-msgid "First"
-msgstr "الأولى"
-
-msgid "Last"
-msgstr "الأخيرة"
-
-msgid "Pending"
-msgstr "قيد التنفيذ"
-
-msgid "Completed"
-msgstr "مكتمل"
-
-msgid "Postponed"
-msgstr "مؤجل"
-
-msgid "Canceled"
-msgstr "ملغي"
-
-msgid "No tasks yet. Add one below!"
-msgstr "لا توجد مهام بعد، أضف مهمة جديدة"
-
+#: projects/forms.py:15 projects/forms.py:44 projects/models.py:9
+#: projects/models.py:47
 msgid "Category"
 msgstr "التصنيف"
 
+#: projects/forms.py:21 projects/forms.py:50 projects/models.py:27
 msgid "Title"
 msgstr "العنوان"
 
+#: projects/forms.py:26 projects/forms.py:55 projects/models.py:32
+#: projects/models.py:64
 msgid "Description"
 msgstr "الوصف"
 
+#: projects/forms.py:60 projects/models.py:36
 msgid "Status"
 msgstr "الحالة"
 
+#: projects/models.py:10
+msgid "Categories"
+msgstr "التصنيفات"
+
+#: projects/models.py:18
+msgid "Pending"
+msgstr "قيد التنفيذ"
+
+#: projects/models.py:19
+msgid "Completed"
+msgstr "مكتمل"
+
+#: projects/models.py:20
+msgid "Postponed"
+msgstr "مؤجل"
+
+#: projects/models.py:21
+msgid "Canceled"
+msgstr "ملغي"
+
+#: projects/models.py:56 projects/models.py:70
+msgid "Project"
+msgstr "مشروع"
+
+#: projects/models.py:57 projects/templates/project/update.html:16
+msgid "Projects"
+msgstr "المشاريع"
+
+#: projects/models.py:75
+msgid "Task"
+msgstr "مهمة"
+
+#: projects/models.py:76 projects/templates/project/task.html:12
+msgid "Tasks"
+msgstr "المهام"
+
+#: projects/templates/base.html:17 projects/templates/partials/header.html:13
+msgid "Projects Management"
+msgstr "إدارة المشاريع"
+
+#: projects/templates/partials/header.html:47
+msgid "Home"
+msgstr "الرئيسية"
+
+#: projects/templates/partials/header.html:60
+msgid "Create Project"
+msgstr "إنشاء مشروع"
+
+#: projects/templates/partials/header.html:84
+msgid "Search"
+msgstr "بحث"
+
+#: projects/templates/partials/header.html:131
+msgid "Profile"
+msgstr "الملف الشخصي"
+
+#: projects/templates/partials/header.html:157
+msgid "Logout"
+msgstr "تسجيل الخروج"
+
+#: projects/templates/partials/header.html:178
+#: projects/templates/registration/login.html:15
+#: projects/templates/registration/login.html:30
+msgid "Login"
+msgstr "تسجيل الدخول"
+
+#: projects/templates/partials/header.html:186
+#: projects/templates/registration/register.html:15
 msgid "Register"
 msgstr "إنشاء حساب"
+
+#: projects/templates/project/create.html:19
+#: projects/templates/project/list.html:119
+msgid "New Project"
+msgstr "مشروع جديد"
+
+#: projects/templates/project/create.html:42
+msgid "Create"
+msgstr "إنشاء"
+
+#: projects/templates/project/delete.html:25
+msgid "Delete Project"
+msgstr "حذف المشروع"
+
+#: projects/templates/project/delete.html:31
+msgid "Are you sure you want to delete"
+msgstr "هل أنت متأكد من الحذف"
+
+#: projects/templates/project/delete.html:59
+#: projects/templates/project/update.html:92
+msgid "Delete"
+msgstr "حذف"
+
+#: projects/templates/project/list.html:11
+msgid "My Projects"
+msgstr "مشاريعي"
+
+#: projects/templates/project/list.html:70
+msgid "Edit"
+msgstr "تعديل"
+
+#: projects/templates/project/list.html:102
+msgid "There are no projects to show"
+msgstr "لا توجد مشاريع لعرضها"
+
+#: projects/templates/project/list.html:147
+#: projects/templates/project/list.html:169
+msgid "First"
+msgstr "الأولى"
+
+#: projects/templates/project/list.html:239
+#: projects/templates/project/list.html:260
+msgid "Last"
+msgstr "الأخيرة"
+
+#: projects/templates/project/task.html:72
+msgid "No tasks yet. Add one below!"
+msgstr "لا توجد مهام بعد، أضف مهمة جديدة"
+
+#: projects/templates/project/task.html:101
+msgid "New Task"
+msgstr "مهمة جديدة"
+
+#: projects/templates/project/task.html:110
+msgid "Add"
+msgstr "إضافة"
+
+#: projects/templates/project/update.html:49
+msgid "Project Details"
+msgstr "تفاصيل المشروع"
+
+#: projects/templates/project/update.html:81
+msgid "Save"
+msgstr "حفظ"
+
+#: projects/templates/registration/profile.html:13
+msgid "Profile Settings"
+msgstr "إعدادات الملف الشخصي"
+
+#: projects/templates/registration/profile.html:26
+msgid "Save Changes"
+msgstr "حفظ التغييرات"
+
+#: projects/templates/registration/register.html:30
+msgid "Create Account"
+msgstr "إنشاء الحساب"
+
+#~ msgid "First Name"
+#~ msgstr "الاسم الأول"
+
+#~ msgid "Last Name"
+#~ msgstr "اسم العائلة"
+
+#~ msgid "Username"
+#~ msgstr "اسم المستخدم"
+
+#~ msgid "Email"
+#~ msgstr "البريد الإلكتروني"
+
+#~ msgid "Password"
+#~ msgstr "كلمة المرور"
+
+#~ msgid "Confirm Password"
+#~ msgstr "تأكيد كلمة المرور"
+
+#~ msgid "No tasks yet"
+#~ msgstr "لا توجد مهام بعد"
+
+#~ msgid "Projects"
+#~ msgstr "المشاريع"

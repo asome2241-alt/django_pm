@@ -5,6 +5,10 @@ from django.utils.translation import gettext_lazy as _
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
+    class Meta:
+        verbose_name = _('Category')
+        verbose_name_plural = _('Categories')
+    
 
     def __str__(self):
         return self.name
@@ -48,6 +52,9 @@ class Project(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE
     )
+    class Meta:
+        verbose_name = _('Project')
+        verbose_name_plural = _('Projects')
 
     def __str__(self):
         return self.title
@@ -63,6 +70,10 @@ class Task(models.Model):
         verbose_name=_('Project'),
         on_delete=models.CASCADE
     )
+
+    class Meta:
+        verbose_name = _('Task')
+        verbose_name_plural = _('Tasks')
 
     def __str__(self):
         return self.description
