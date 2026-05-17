@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
 
 from . import models
 
@@ -10,6 +11,22 @@ attrs = {
 
 class ProjectCreateForm(forms.ModelForm):
 
+    category = forms.ModelChoiceField(
+        label=_('Category'),
+        queryset=models.Category.objects.all(),
+        widget=forms.Select(attrs=attrs)
+    )
+
+    title = forms.CharField(
+        label=_('Title'),
+        widget=forms.TextInput(attrs=attrs)
+    )
+
+    description = forms.CharField(
+        label=_('Description'),
+        widget=forms.Textarea(attrs=attrs)
+    )
+
     class Meta:
 
         model = models.Project
@@ -20,24 +37,30 @@ class ProjectCreateForm(forms.ModelForm):
             'description',
         ]
 
-        widgets = {
-
-            'category': forms.Select(
-                attrs=attrs
-            ),
-
-            'title': forms.TextInput(
-                attrs=attrs
-            ),
-
-            'description': forms.Textarea(
-                attrs=attrs
-            ),
-
-        }
-
 
 class ProjectUpdateForm(forms.ModelForm):
+
+    category = forms.ModelChoiceField(
+        label=_('Category'),
+        queryset=models.Category.objects.all(),
+        widget=forms.Select(attrs=attrs)
+    )
+
+    title = forms.CharField(
+        label=_('Title'),
+        widget=forms.TextInput(attrs=attrs)
+    )
+
+    description = forms.CharField(
+        label=_('Description'),
+        widget=forms.Textarea(attrs=attrs)
+    )
+
+    status = forms.ChoiceField(
+        label=_('Status'),
+        choices=models.ProjectStatus.choices,
+        widget=forms.Select(attrs=attrs)
+    )
 
     class Meta:
 
@@ -49,23 +72,3 @@ class ProjectUpdateForm(forms.ModelForm):
             'description',
             'status',
         ]
-
-        widgets = {
-
-            'category': forms.Select(
-                attrs=attrs
-            ),
-
-            'title': forms.TextInput(
-                attrs=attrs
-            ),
-
-            'description': forms.Textarea(
-                attrs=attrs
-            ),
-
-            'status': forms.Select(
-                attrs=attrs
-            ),
-
-        }

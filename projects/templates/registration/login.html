@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load i18n %}
 {% block content %}
 
 <div class="row justify-content-center mt-5">
@@ -12,7 +12,7 @@
 
                 <h2 class="text-center mb-4">
 
-                    Login
+                    {% trans 'Login' %}
 
                 </h2>
 
@@ -27,7 +27,7 @@
                         class="btn btn-success w-100"
                     >
 
-                        Login
+                        {% trans 'Login' %}
 
                     </button>
 

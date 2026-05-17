@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load i18n %}
 {% block content %}
 
 <div class="row justify-content-center">
@@ -12,7 +12,7 @@
 
                 <h2 class="text-center mb-4">
 
-                    Register
+                    {% trans 'Register' %}
 
                 </h2>
 
@@ -27,7 +27,7 @@
                         class="btn btn-success w-100"
                     >
 
-                        Create Account
+                        {% trans 'Create Account' %}
 
                     </button>
 
